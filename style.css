@@ -1,0 +1,42 @@
+div[class^=col], div.w-50 {
+    /*text-align:center;*/
+}
+#inputConfig{
+    width: 100px;
+    min-width: 95px;
+}
+#inputSetup{
+    width: 100px;
+    min-width: 95px;
+}
+
+.js-c{
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+    align-items: center;
+}
+.bt-w{
+    width: 60px;
+}
+.byteText{
+    width: 60px;
+    background:white;
+    margin-top: -10px;
+}
+.fixed-top-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+#content {
+    padding-top: 140px; 
+}
+@media screen {
+    
+}

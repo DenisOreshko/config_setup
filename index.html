@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Config and Setup</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container border border-1 rounded-2 shadow-sm p-3 mb-5 bg-body rounded">
+        <div class="container bg-body border border-1 fixed-top-header" id="header">
+            <div class="row js-c">
+                <h3>Config and Setup</h3>
+            </div>        
+            <div class="row mb-3 d-flex align-items-center">
+                <label for="inputConfig" class="col-sm-2 col-form-label">Config</label>
+                <div class="col-sm-1" >
+                    <input type="text" 
+                        class="form-control" 
+                        id="inputConfig" 
+                        value="00000000" 
+                        maxlength="8"
+                        oninput="limitHexInput(this)">
+                </div>
+                <div class="col-sm-1 offset-sm-1">  
+                    <div>              
+                        <span id="config-byte3">00</span>                     
+                        <span id="config-byte2">00</span> 
+                        <span id="config-byte1">00</span>
+                    </div>   
+                </div>
+                <div class="col">
+                    <div class="d-flex flex-nowrap gap-3"">
+                      <div id="byte3CgfCheckBoxContainer">
+                        <input class="form-check-input" type="checkbox" id="byte3CgfCheckbox7" value="bit7">
+                        <input class="form-check-input" type="checkbox" id="byte3CgfCheckbox6" value="bit6">
+                        <input class="form-check-input" type="checkbox" id="byte3CgfCheckbox5" value="bit5">  
+                        <input class="form-check-input" type="checkbox" id="byte3CgfCheckbox4" value="bit4"> 
+                        <input class="form-check-input" type="checkbox" id="byte3CgfCheckbox3" value="bit3"> 
+                        <input class="form-check-input" type="checkbox" id="byte3CgfCheckbox2" value="bit2">  
+                        <input class="form-check-input" type="checkbox" id="byte3CgfCheckbox1" value="bit1"> 
+                        <input class="form-check-input" type="checkbox" id="byte3CgfCheckbox0" value="bit0">
+                      </div>
+                      <div id="byte2CgfCheckBoxContainer">
+                        <input class="form-check-input" type="checkbox" id="byte2CgfCheckbox7" value="bit7">
+                        <input class="form-check-input" type="checkbox" id="byte2CgfCheckbox6" value="bit6">
+                        <input class="form-check-input" type="checkbox" id="byte2CgfCheckbox5" value="bit5">  
+                        <input class="form-check-input" type="checkbox" id="byte2CgfCheckbox4" value="bit4"> 
+                        <input class="form-check-input" type="checkbox" id="byte2CgfCheckbox3" value="bit3"> 
+                        <input class="form-check-input" type="checkbox" id="byte2CgfCheckbox2" value="bit2">  
+                        <input class="form-check-input" type="checkbox" id="byte2CgfCheckbox1" value="bit1"> 
+                        <input class="form-check-input" type="checkbox" id="byte2CgfCheckbox0" value="bit0">
+                      </div>
+                      <div id="byte1CgfCheckBoxContainer">
+                        <input class="form-check-input" type="checkbox" id="byte1CgfCheckbox7">
+                        <input class="form-check-input" type="checkbox" id="byte1CgfCheckbox6">
+                        <input class="form-check-input" type="checkbox" id="byte1CgfCheckbox5">  
+                        <input class="form-check-input" type="checkbox" id="byte1CgfCheckbox4"> 
+                        <input class="form-check-input" type="checkbox" id="byte1CgfCheckbox3"> 
+                        <input class="form-check-input" type="checkbox" id="byte1CgfCheckbox2">  
+                        <input class="form-check-input" type="checkbox" id="byte1CgfCheckbox1"> 
+                        <input class="form-check-input" type="checkbox" id="byte1CgfCheckbox0">
+                      </div>
+                    </div>
+                </div>                
+            </div>
+            <div class="row mb-3">
+                <label for="inputSetup" class="col-sm-2 col-form-label">Setup</label>
+                <div class="col-sm-1">
+                    <input type="text" 
+                    class="form-control" 
+                    id="inputSetup" 
+                    value="00000000" 
+                    maxlength="8"
+                    oninput="limitHexInput(this)">
+                </div>
+                <div class="col-sm-1 offset-sm-1">                   
+                    <span id="setup-byte3">00</span>                     
+                    <span id="setup-byte2">00</span> 
+                    <span id="setup-byte1">00</span>
+                </div>
+                <div class="col">
+                    <div class=" d-flex flex-nowrap  gap-3">
+                      <div id="byte3StpCheckBoxContainer">
+                        <input class="form-check-input" type="checkbox" id="byte3StpCheckbox7">
+                        <input class="form-check-input" type="checkbox" id="byte3StpCheckbox6">
+                        <input class="form-check-input" type="checkbox" id="byte3StpCheckbox5">  
+                        <input class="form-check-input" type="checkbox" id="byte3StpCheckbox4"> 
+                        <input class="form-check-input" type="checkbox" id="byte3StpCheckbox3"> 
+                        <input class="form-check-input" type="checkbox" id="byte3StpCheckbox2">  
+                        <input class="form-check-input" type="checkbox" id="byte3StpCheckbox1"> 
+                        <input class="form-check-input" type="checkbox" id="byte3StpCheckbox0">
+                      </div>
+                      <div id="byte2StpCheckBoxContainer">
+                        <input class="form-check-input" type="checkbox" id="byte2StpCheckbox7">
+                        <input class="form-check-input" type="checkbox" id="byte2StpCheckbox6">
+                        <input class="form-check-input" type="checkbox" id="byte2StpCheckbox5">  
+                        <input class="form-check-input" type="checkbox" id="byte2StpCheckbox4"> 
+                        <input class="form-check-input" type="checkbox" id="byte2StpCheckbox3""> 
+                        <input class="form-check-input" type="checkbox" id="byte2StpCheckbox2">  
+                        <input class="form-check-input" type="checkbox" id="byte2StpCheckbox1"> 
+                        <input class="form-check-input" type="checkbox" id="byte2StpCheckbox0">
+                      </div>
+                      <div id="byte1StpCheckBoxContainer">
+                        <input class="form-check-input" type="checkbox" id="byte1StpCheckbox7">
+                        <input class="form-check-input" type="checkbox" id="byte1StpCheckbox6">
+                        <input class="form-check-input" type="checkbox" id="byte1StpCheckbox5">  
+                        <input class="form-check-input" type="checkbox" id="byte1StpCheckbox4"> 
+                        <input class="form-check-input" type="checkbox" id="byte1StpCheckbox3"> 
+                        <input class="form-check-input" type="checkbox" id="byte1StpCheckbox2"">  
+                        <input class="form-check-input" type="checkbox" id="byte1StpCheckbox1"> 
+                        <input class="form-check-input" type="checkbox" id="byte1StpCheckbox0">
+                      </div>
+                    </div>
+                </div>   
+            </div>
+        </div>
+        <div class="container" id="content">
+            <div class="row mb-1">
+                <div class="row js-c mt-4">
+                    <h5>Config</h5>
+                </div>
+            </div>            
+            <div class="row js-c mb-2">            
+                <div class="mt-2 col-lg-8 border-top">
+                    <h6 class="byteText">Byte 1</h6>
+                </div>            
+            </div>
+            <div class="row mb-2 d-flex align-items-center" >
+                <div class="col-sm-2">Bit 0,1,2</div>
+                <div class="col-sm-2">
+                    <div class="dropdown">                        
+                        <button class="btn btn-light border bg-body text-dark fw-bold dropdown-toggle" 
+                                type="button" 
+                                id="dd-menu-button-cfg-byte1-bit012" 
+                                data-bs-toggle="dropdown" 
+                                aria-expanded="false">
+                        <span id="txt-dd-btn-type-ls">Type of Laser System</span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dd-menu-button-cfg-byte1-bit012">
+                            <li><a class="dropdown-item" href="#" onclick="updateText(this, event)">0 - простая одноламповая лазерная система </a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateText(this, event)">1 - двухламповая система (Delay1 – QSW1; Delay2 – Delay of Generator Lamp)</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateText(this, event)">2 - длинно импульсная лазерная система</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateText(this, event)">3 - двухламповая система (для PICO: Delay1 – Delay of Oscillator Lamp; Delay2 – Delay of Generator Lamp)</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateText(this, event)">4 - одноламповая, с задержкой запуска лампы (Delay2 – Delay of Lamp ?)</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateText(this, event)">5 - наличие дополнительного канала синхронизации на базе формирователя 2-й задержки</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateText(this, event)">6 - система охлаждения</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateText(this, event)">7 - расширенная конфигурация согласно 3-го байта</a></li>
+                        </ul>
+                    </div>
+                </div>          
+            </div>
+            <div class="row mb-2 d-flex align-items-center">
+                <div class="col-sm-2">Bit 3,4</div>
+                <div class="col-sm-2">
+                    <div class="dropdown">
+                        <button class="btn btn-light border bg-body text-dark fw-bold dropdown-toggle" 
+                                type="button" 
+                                id="dd-menu-button-cfg-byte1-bit34" 
+                                data-bs-toggle="dropdown" 
+                                aria-expanded="false">
+                        <span id="txt-dd-btn-type-qsw">Type of QSW</span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dd-menu-button-cfg-byte1-bit34">
+                            <li><a class="dropdown-item" href="#" onclick="updateText(this, event)">0 - без оптического канала</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateText(this, event)">1 - с одним оптическим каналом (управление QSW)</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateText(this, event)">2 - с двумя оптическими каналами излучения</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateText(this, event)">3 - с двумя оптическими каналами излучения с нано задержками</a></li>
+                        </ul>
+                    </div>
+                </div>  
+            </div>
+            <div class="row mb-2 d-flex align-items-center">
+                <div class="col-sm-2">Bit 5,6</div>
+                <div class="col-sm-2">
+                    <div class="dropdown">
+                        <button class="btn btn-light border bg-body text-dark fw-bold dropdown-toggle" 
+                                type="button" 
+                                id="dropdownMenuButton1" 
+                                data-bs-toggle="dropdown" 
+                                aria-expanded="false">
+                        <span id="txt-dd-btn-count-ftd">Count of Fotodetectors</span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#" onclick="updateTextTypeFdt(this, event)">0 - без индикатора излучения</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextTypeFdt(this, event)">1 - с одним индикатором излучения</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextTypeFdt(this, event)">2 - с двумя индикаторами излучения</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextTypeFdt(this, event)">3 - с тремя индикаторами</a></li>
+                        </ul>
+                    </div>
+                </div>  
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2">Bit 7</div>
+                <div class="col-sm-4 offset-sm-0">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="fh-oven-temperature-bit7">
+                        <label class="form-check-label" for="fh-oven-temperature-bit7">Наличие «FH oven temperature»</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row js-c mb-2">            
+                <div class="mt-4 col-lg-8 border-top bt-w">
+                    <h6 class="byteText">Byte 2</h6>
+                </div>            
+            </div>
+            <div class="row mb-2 d-flex align-items-center">
+                <div class="col-sm-2">Bit 0,1,2,3</div>
+                <div class="col-sm-2">
+                    <div class="dropdown">
+                        <button class="btn btn-light border bg-body text-primary dropdown-toggle" 
+                                type="button" 
+                                id="dropdownMenuButton1" 
+                                data-bs-toggle="dropdown" 
+                                aria-expanded="false">
+                        <span id="txt-dd-btn-state-dep-sh">Наличие зависимых шторок</span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#" onclick="updateTextStateDepShut(this, event)">0 - шторок нет</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextStateDepShut(this, event)">1 - два состояния</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextStateDepShut(this, event)">2 - три состояния</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextStateDepShut(this, event)">3 - четыре состояния</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextStateDepShut(this, event)">4 - пять состояний</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextStateDepShut(this, event)">5 - шесть состояний</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextStateDepShut(this, event)">6 - семь состояний</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextStateDepShut(this, event)">7 - восемь состояний</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextStateDepShut(this, event)">8 - девять состояний</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextStateDepShut(this, event)">9 - десять состояний</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextStateDepShut(this, event)">10 - 11 состояний</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextStateDepShut(this, event)">11 - 12 состояний</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextStateDepShut(this, event)">12 - 13 состояний</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextStateDepShut(this, event)">13 - 14 состояний</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextStateDepShut(this, event)">14 - 15 состояний</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextStateDepShut(this, event)">15 - 16 состояний</a></li>
+                        </ul>
+                    </div>
+                </div> 
+                <div class="col-sm-4 offset-sm-1">4-х зависимых шторок</div>
+            </div>
+            <div class="row mb-2  d-flex align-items-center">
+                <div class="col-sm-2">Bit 4,5,6,7</div>
+                <div class="col-sm-2">
+                    <div class="dropdown">
+                        <button class="btn btn-light border bg-body text-primary dropdown-toggle" 
+                                type="button" 
+                                id="dropdownMenuButton1" 
+                                data-bs-toggle="dropdown" 
+                                aria-expanded="false">
+                        <span id="txt-dd-btn-state-undep-sh">Наличие независимых шторок</span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#" onclick="updateTextStateUndepSh(this, event)">0 - независимых шторок нет</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextStateUndepSh(this, event)">1 - одна независимая шторка</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextStateUndepSh(this, event)">2 - две независимые шторки</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextStateUndepSh(this, event)">3 - три независимые шторки</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateTextStateUndepSh(this, event)">4 - четыре независимые шторки</a></li>
+                        </ul>
+                    </div>
+                </div> 
+            </div>
+            <div class="row js-c mb-2">            
+                <div class="mt-4 col-lg-8 border-top bt-w">
+                    <h6 class="byteText">Byte 3</h6>
+                </div>            
+            </div>
+            <div class="row mb-4">
+                <div class="col-sm-10 offset-sm-2">
+                    <div class="dropdown">
+                        <button class="btn btn-light border bg-body text-primary dropdown-toggle" 
+                                type="button" 
+                                id="dropdownMenuButton1" 
+                                data-bs-toggle="dropdown" 
+                                aria-expanded="false">
+                        <span id="txt-dd-btn-config">Select Laser System</span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#" onclick="updateTextLS(this, event)">0 - LD</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="updateTextLS(this, event)">1 - PICOLDD</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="updateTextLS(this, event)">2 - синхронизация (PICO)</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="updateTextLS(this, event)">3 - лазеры нового поколения (LSgeneral)</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="updateTextLS(this, event)">4 - PIV лазеры (PIVLS)</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="updateTextLS(this, event)">5 - лазеры нового поколения с аттенюатором (LSgeneral)</a></li>
+                        </ul>
+                    </div>
+                </div>          
+            </div>
+            <div class="row border-top mb-2">
+                <div class="row js-c">
+                    <h5 class="mt-4">Setup</h5>
+                    <div class="mt-4 col-lg-8 border-top bt-w">
+                        <h6 class="byteText">Byte 1</h6>
+                    </div>
+                </div>                
+            </div>
+            <div class="row mb-2 d-flex align-items-center">
+                <div class="col-sm-2">Bit 0,1</div>
+                <div class="col-sm-2">
+                    <div class="dropdown">
+                        <button class="btn btn-light border bg-body text-primary dropdown-toggle" 
+                                type="button" 
+                                id="dropdownMenuButton1" 
+                                data-bs-toggle="dropdown" 
+                                aria-expanded="false">
+                        <span id="txt-dd-btn-type-cs">Select CS</span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#" onclick="updateTextCS(this, event)">0- без системы охлаждения (СО)</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="updateTextCS(this, event)">1 - с 1-ой системой СО</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="updateTextCS(this, event)">2 - наличие 2-х СО</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="updateTextCS(this, event)">3 - встроенная СО</a></li>
+                        </ul>
+                    </div>
+                </div>          
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2">Bit 2</div>
+                <div class="col-sm-10 offset-sm-0">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="setup-byte1-bit2">
+                        <label class="form-check-label" for="setup-byte1-bit2">разрешен опрос внешних кнопок управления лазером</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2">Bit 3</div>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="setup-byte1-bit3">
+                        <label class="form-check-label" for="setup-byte1-bit3">
+                            разрешена блокировка технологической двери внешнего оборудования
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2">Bit 4</div>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="setup-byte1-bit4" checked disabled>
+                        <label class="form-check-label" for="setup-byte1-bit4">
+                          
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2">Bit 5</div>
+                <div class="col-sm-10 ">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="setup-byte1-bit5">
+                        <label class="form-check-label" for="setup-byte1-bit5">
+                            разрешена внешняя блокировка 1 работы системы                        
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2">Bit 6</div>
+                <div class="col-sm-10 ">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="setup-byte1-bit6">
+                        <label class="form-check-label" for="setup-byte1-bit6">
+                            разрешена внешняя блокировка 2 работы системы                        
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2">Bit 7</div>
+                <div class="col-sm-10 ">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="setup-byte1-bit7">
+                        <label class="form-check-label" for="setup-byte1-bit6">
+                            разрешен внешний контроль запусков лампы                       
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2 js-c">
+                <div class="col-lg-8 border-top js-c mt-4">
+                    <h6 class="byteText">Byte 2</h6>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2">Bit 0</div>
+                <div class="col-sm-10 ">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="setup-byte2-bit0">
+                        <label class="form-check-label" for="setup-byte2-bit0">
+                            разрешено запоминание текущих энергии накачки лампы или значения тока ПДНЛ                      
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2">Bit 1</div>
+                <div class="col-sm-10 ">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="setup-byte2-bit1">
+                        <label class="form-check-label" for="setup-byte2-bit1">
+                            запрещено изменение частоты импульсов тока 
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2">Bit 2</div>
+                <div class="col-sm-10 ">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="setup-byte2-bit2">
+                        <label class="form-check-label" for="setup-byte2-bit2">
+                            расширенный диапазон контроля внешней частоты запуска ПДНЛ 
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2">Bit 3</div>
+                <div class="col-sm-10 ">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="setup-byte2-bit3">
+                        <label class="form-check-label" for="setup-byte2-bit3">
+                        использовать Шторку 2 для переключения длин волн (с сохранением состояния)
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2">Bit 4</div>
+                <div class="col-sm-10 ">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="setup-byte2-bit4">
+                        <label class="form-check-label" for="setup-byte2-bit4">
+                            использовать Шторку 2 в качестве выходной шторки (без сохранения состояния)
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2 d-flex align-items-center">
+                <div class="col-sm-2">Bit 5</div>
+                <div class="col-sm-10 ">
+                    <div class="dropdown">
+                        <button class="btn btn-light border bg-body text-primary dropdown-toggle" 
+                                type="button" 
+                                id="dropdownMenuButton3" 
+                                data-bs-toggle="dropdown" 
+                                aria-expanded="false">
+                        <span id="txt-dd-btn-close-open">закрывать/не закрывать</span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                        <li><a class="dropdown-item" href="#" onclick="updateTextCloseOpen(this, event)">0 - закрывать</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="updateTextCloseOpen(this, event)">1 - не закрывать</a></li>
+                        </ul>
+                        <span>внутрирезонаторную шторку при переключении длин волн</span>  
+                    </div>                 
+                </div>                   
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2">Bit 6</div>
+                <div class="col-sm-10 ">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="setup-byte2-bit6">
+                        <label class="form-check-label" for="setup-byte2-bit6">
+                            Наличие пилотного лазера
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2">Bit 7</div>
+                <div class="col-sm-10 ">
+                    <div class="dropdown">
+                        <span>модуль PFC включается</span>
+                        <button class="btn btn-light border bg-body text-primary dropdown-toggle" 
+                                type="button" 
+                                id="dropdownMenuButton3" 
+                                data-bs-toggle="dropdown" 
+                                aria-expanded="false">
+                        <span id="txt-dd-btn-pfc-piv-cls">PIV/CLS</span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                        <li><a class="dropdown-item" href="#" onclick="updateTextPfcPivCls(this, event)">0 - программно (PIV лазер)</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="updateTextPfcPivCls(this, event)">1 - аппаратно (CLS)</a></li>
+                        </ul>
+                        
+                    </div>                 
+                </div>                   
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" 
+            crossorigin="anonymous"></script>
+    <script src="javascripts/dropdown.js"></script>
+    <script src="javascripts/header.js"></script>
+</body>
+
+</html>
