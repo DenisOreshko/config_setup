@@ -113,14 +113,14 @@ let typeLSByte3 = [
     '2 - управлениe синхронизацией (PICO)',
     '3 - лазеры нового поколения (LSgeneral)',
     '4 - PIV лазеры (PIVLS)',
-    '5 - лазеры нового поколения с аттенюатором (LSgeneral)',
+    '5 - LSgeneral с аттенюатором ',
     '6 - означает система LDD_Double',
-    '7 - означает система управления лазерами нового поколения (LS-COMBO)',
-    '8 - означает система управления лазерами нового поколения (LS-COMBO Double)',
-    '9 - означает система управления лазерами нового поколения (LSgeneral Double с 2 каналом зависимых шторок)',
-    '10 - означает система управления лазерами нового поколения (LS-LP)',
-    '11 - аналог PIV - первый канал - длинный импульс, второй канал стандартный ( LIBS_LS )',
-    '12 - означает система LDD_Double с высоковольтной накачкой'];
+    '7 - LS-COMBO',
+    '8 - LS-COMBO Double',
+    '9 - LSgeneral Double с 2 каналом зависимых шторок',
+    '10 - LS-LP',
+    '11 - LIBS_LS',
+    '12 - LDD_Double с высоковольтной накачкой'];
 
 let typeCS = [
     '0- без системы охлаждения (СО)',
@@ -207,8 +207,8 @@ function updCfgBits(){
 
     cfgByte3_num = binToDec(binByte3Cfg);
 
-    console.log('updCfgBits binByte1Cfg',binByte1Cfg);
-    console.log('updCfgBits cfgByte1_bit_012',cfgByte1_bit_012);
+    //console.log('updCfgBits binByte1Cfg',binByte1Cfg);
+    //console.log('updCfgBits cfgByte1_bit_012',cfgByte1_bit_012);
 }
 function updSetupBits(){
     stpByte1_bit_01 = binToDec(binByte1Stp.substring(6,8));
@@ -392,6 +392,7 @@ function updateText(clickedElement, event) {
     let ariaLabelledById = $(clickedElement).closest('ul').attr('aria-labelledby');    
     let selectedLiNumber = $(clickedElement).parent().index();    
     let selectedValue = $(clickedElement).text();  
+   
     let str = ariaLabelledById.replace('dd-menu-button-','');
     let part = str.split('-')[0];
     let byte = str.split('-')[1];
@@ -419,17 +420,37 @@ function updateText(clickedElement, event) {
                 setByteCheckBoxes(byte1CfgCheckBoxContainer, binByte1Cfg);
             }
             if(bit === 'bit56'){
-
-            }
-            if(bit === 'bit7'){
-
-            }
+                let bits = decToBin(selectedLiNumber);
+                while (bits.length < 2) {
+                    bits = '0' + bits;
+                }
+                
+                binByte1Cfg  = binByte1Cfg.substring(0, 1) + bits + binByte1Cfg.substring(3);
+                setByteCheckBoxes(byte1CfgCheckBoxContainer, binByte1Cfg);
+            }            
         }
         if(byte === 'byte2'){
-
+            if(bit === 'bit0123'){
+                let bits = decToBin(selectedLiNumber);
+                while (bits.length < 4) {
+                    bits = '0' + bits;
+                }                
+                binByte2Cfg = bits + binByte2Cfg.slice(4);
+                setByteCheckBoxes(byte2CfgCheckBoxContainer, binByte2Cfg);
+            }
+            if(bit === 'bit4567'){
+                let bits = decToBin(selectedLiNumber);
+                while (bits.length < 4) {
+                    bits = '0' + bits;
+                }         
+                console.log('binByte2Cfg',binByte2Cfg);
+                binByte2Cfg = binByte2Cfg.slice(-3) + bits;
+                console.log('new binByte2Cfg',binByte2Cfg);
+                setByteCheckBoxes(byte2CfgCheckBoxContainer, binByte2Cfg);
+            }
         }
         if(byte === 'byte3'){
-
+            
         }
         updateInputConfig(); 
     }
@@ -446,6 +467,16 @@ function updateText(clickedElement, event) {
         updateInputSetup();
     }        
 }
+
+const checkBoxConfigByte1Bit7 = document.getElementById('fh-oven-temperature-bit7');
+checkBoxConfigByte1Bit7.addEventListener('change', (e)=>{
+    let bit = e.target.checked ? '1' : '0';
+    binByte1Cfg  = bit + binByte1Cfg.slice(1);
+    setByteCheckBoxes(byte1CfgCheckBoxContainer, binByte1Cfg);
+    updateInputConfig();
+});
+
+
 function updateTextTypeQSW(clickedElement, event) {
     event.preventDefault();
     let selectedValue = $(clickedElement).text();
