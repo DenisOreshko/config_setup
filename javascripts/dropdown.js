@@ -136,6 +136,11 @@ let launchPivCls = [
     '0 - программно (PIV лазер)',
     '1 - аппаратно (CLS)'];
 
+let txtDepSHutters = document.getElementById('txt-4-dep-shutters');
+if (cfgByte2_bit_0123 === 0) {
+    txtDepSHutters.textContent = '';
+}
+
 function setItemDropDown(arr, elem, num){
     const button = document.querySelector(`${elem}`).closest('button');
     
@@ -188,6 +193,11 @@ function setupDropDownsAndCheckBoxes(){
     setItemDropDown(setIntCloseOpenSh, '#txt-dd-btn-close-open', stpByte2_bit_5);
     setBit('setup-byte2-bit6',stpByte2_bit_6);
     setItemDropDown(launchPivCls, '#txt-dd-btn-pfc-piv-cls', stpByte2_bit_7);
+    if(cfgByte2_bit_0123 === 0){
+        txtDepSHutters.textContent='';
+    }else{
+        txtDepSHutters.textContent='4-x зависимых шторок';
+    } 
 }
 setupDropDownsAndCheckBoxes();
 
@@ -202,13 +212,10 @@ function updCfgBits(){
     cfgByte1_bit_56 = binToDec(binByte1Cfg.substring(1,3));
     cfgByte1_bit_7 = binByte1Cfg.substring(0,1);
 
-    cfgByte2_bit_0123 = binToDec(binByte2Cfg.substring(0,4)); 
-    cfgByte2_bit_4567 = binToDec(binByte2Cfg.substring(4,8)); 
+    cfgByte2_bit_0123 = binToDec(binByte2Cfg.substring(4,8)); 
+    cfgByte2_bit_4567 = binToDec(binByte2Cfg.substring(0,4)); 
 
     cfgByte3_num = binToDec(binByte3Cfg);
-
-    //console.log('updCfgBits binByte1Cfg',binByte1Cfg);
-    //console.log('updCfgBits cfgByte1_bit_012',cfgByte1_bit_012);
 }
 function updSetupBits(){
     stpByte1_bit_01 = binToDec(binByte1Stp.substring(6,8));
@@ -349,12 +356,13 @@ function updateInputConfig(){
     binByte1Cfg = getBinByteFromCheckBoxes(byte1CfgCheckBoxContainer);
     binByte2Cfg = getBinByteFromCheckBoxes(byte2CfgCheckBoxContainer);
     binByte3Cfg = getBinByteFromCheckBoxes(byte3CfgCheckBoxContainer);
-
+    
     let hexByte1 = getHexFromBin(binByte1Cfg);
     let hexByte2 = getHexFromBin(binByte2Cfg);
     let hexByte3 = getHexFromBin(binByte3Cfg);
 
     config = '00'+ hexByte3 + hexByte2 + hexByte1;
+    console.log('config',config);
 
     byte1Cfg = config.substring(8,6);
     byte2Cfg = config.substring(6,4);
@@ -387,8 +395,11 @@ function updateInputSetup(){
     inputSetup.value = setup;
 }
 
+
+
 function updateText(clickedElement, event) {
-    event.preventDefault();
+    event.preventDefault();    
+
     let ariaLabelledById = $(clickedElement).closest('ul').attr('aria-labelledby');    
     let selectedLiNumber = $(clickedElement).parent().index();    
     let selectedValue = $(clickedElement).text();  
@@ -434,8 +445,8 @@ function updateText(clickedElement, event) {
                 let bits = decToBin(selectedLiNumber);
                 while (bits.length < 4) {
                     bits = '0' + bits;
-                }                
-                binByte2Cfg = bits + binByte2Cfg.slice(4);
+                }        
+                binByte2Cfg =  binByte2Cfg.slice(0,4) + bits;
                 setByteCheckBoxes(byte2CfgCheckBoxContainer, binByte2Cfg);
             }
             if(bit === 'bit4567'){
@@ -443,26 +454,43 @@ function updateText(clickedElement, event) {
                 while (bits.length < 4) {
                     bits = '0' + bits;
                 }         
-                console.log('binByte2Cfg',binByte2Cfg);
-                binByte2Cfg = binByte2Cfg.slice(-3) + bits;
-                console.log('new binByte2Cfg',binByte2Cfg);
+                binByte2Cfg = bits + binByte2Cfg.slice(4);
                 setByteCheckBoxes(byte2CfgCheckBoxContainer, binByte2Cfg);
             }
         }
         if(byte === 'byte3'){
+            let bits = decToBin(selectedLiNumber);
+            while (bits.length < 8) {
+                bits = '0' + bits;
+            }
             
+            binByte3Cfg = bits;
+            setByteCheckBoxes(byte3CfgCheckBoxContainer, binByte3Cfg);
         }
         updateInputConfig(); 
     }
     if(part === 'stp'){
         if(byte === 'byte1'){
-
+            if(bit === 'bit01'){
+                let bits = decToBin(selectedLiNumber);
+                while (bits.length < 2) {
+                    bits = '0' + bits;
+                }                
+                binByte1Stp = binByte1Stp.slice(0,6) + bits;
+                setByteCheckBoxes(byte1StpCheckBoxContainer, binByte1Stp);
+            }            
         }
-        if(byte === 'byte2'){
-
-        }
-        if(byte === 'byte3'){
-
+        if(byte === 'byte2'){            
+            if(bit === 'bit5'){
+                let bits = decToBin(selectedLiNumber);               
+                binByte2Stp  = binByte2Stp.substring(0, 2) + bits + binByte2Stp.substring(3, 8);             
+                setByteCheckBoxes(byte2StpCheckBoxContainer, binByte2Stp);
+            }
+            if(bit === 'bit7'){
+                let bits = decToBin(selectedLiNumber);               
+                binByte2Stp  = bits + binByte2Stp.slice(1);             
+                setByteCheckBoxes(byte2StpCheckBoxContainer, binByte2Stp);
+            }            
         }
         updateInputSetup();
     }        
