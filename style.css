@@ -41,6 +41,14 @@ div[class^=col], div.w-50 {
     .btn.dropdown-toggle{
       white-space: normal !important;
     }
+    #inputConfig{
+        width: 120px;
+        min-width: 100px;
+    }
+    #inputSetup{
+        width: 120px;
+        min-width: 100px;
+    }
 }
 @media (min-width: 800px) and (min-height: 600px) {
     .dropdown {
