@@ -300,7 +300,6 @@ function limitHexInput(input) {
       input.value = input.value.substring(0, 8);
     }
 }
-
 function hexToBin(hexString) {
     const binaryString = hexString.split('').map(hexDigit => {
       const binaryDigit = parseInt(hexDigit, 16).toString(2).padStart(4, '0');
@@ -319,7 +318,6 @@ function setByteCheckBoxes(byteCheckBoxContainer, binByte) {
         checkbox.checked = bitValue === '1';
     }
 }
-
 function getBinByteFromCheckBoxes(byteCheckBoxContainer){
     let binByte = '';
     for (let i = 0; i < byteCheckBoxContainer.children.length; i++) {
@@ -328,7 +326,6 @@ function getBinByteFromCheckBoxes(byteCheckBoxContainer){
     }
     return binByte;
 }
-
 function getHexFromBin(binByte) {
     const hexByte = parseInt(binByte, 2).toString(16).toUpperCase();
     return hexByte.padStart(2, '0');
@@ -496,54 +493,107 @@ function updateText(clickedElement, event) {
     }        
 }
 
-const checkBoxConfigByte1Bit7 = document.getElementById('fh-oven-temperature-bit7');
-checkBoxConfigByte1Bit7.addEventListener('change', (e)=>{
+const cBoxConfigByte1Bit7 = document.getElementById('fh-oven-temperature-bit7');
+cBoxConfigByte1Bit7.addEventListener('change', (e)=>{
     let bit = e.target.checked ? '1' : '0';
     binByte1Cfg  = bit + binByte1Cfg.slice(1);
     setByteCheckBoxes(byte1CfgCheckBoxContainer, binByte1Cfg);
     updateInputConfig();
 });
 
+const cBoxSetupByte1Bit2 = document.getElementById('setup-byte1-bit2');
+cBoxSetupByte1Bit2.addEventListener('change', (e)=>{
+    let bit = e.target.checked ? '1' : '0';
+    binByte1Stp  = binByte1Stp.slice(0,5) + bit + binByte1Stp.slice(6);
+    setByteCheckBoxes(byte1StpCheckBoxContainer, binByte1Stp);
+    updateInputSetup();
+});
 
-function updateTextTypeQSW(clickedElement, event) {
-    event.preventDefault();
-    let selectedValue = $(clickedElement).text();
-    $('#txt-dd-btn-type-qsw').text(selectedValue);
-}
-function updateTextTypeFdt(clickedElement, event) {
-    event.preventDefault();
-    let selectedValue = $(clickedElement).text();
-    $('#txt-dd-btn-count-fdt').text(selectedValue);
-}
-function updateTextStateDepShut(clickedElement, event) {
-    event.preventDefault();
-    let selectedValue = $(clickedElement).text();
-    $('#txt-dd-btn-state-dep-sh').text(selectedValue);
-}
-function updateTextStateUndepSh(clickedElement, event) {
-    event.preventDefault();
-    let selectedValue = $(clickedElement).text();
-    $('#txt-dd-btn-state-undep-sh').text(selectedValue);
-}
-function updateTextLS(clickedElement, event) {
-    event.preventDefault();
-    let selectedValue = $(clickedElement).text();
-    $('#txt-dd-btn-config').text(selectedValue);
-}
-function updateTextCS(clickedElement, event) {
-    event.preventDefault();
-    let selectedValue = $(clickedElement).text();
-    $('#txt-dd-btn-type-cs').text(selectedValue);
-}
-function updateTextCloseOpen(clickedElement, event) {
-    console.log('event:',event);
-    event.preventDefault();
-    let selectedValue = $(clickedElement).text();
-    $('#txt-dd-btn-close-open').text(selectedValue);
-}
-function updateTextPfcPivCls(clickedElement, event) {
-    console.log('event:',event);
-    event.preventDefault();
-    let selectedValue = $(clickedElement).text();
-    $('#txt-dd-btn-pfc-piv-cls').text(selectedValue);
-}
+const cBoxSetupByte1Bit3 = document.getElementById('setup-byte1-bit3');
+cBoxSetupByte1Bit3.addEventListener('change', (e)=>{
+    let bit = e.target.checked ? '1' : '0';
+    binByte1Stp  = binByte1Stp.slice(0,4) + bit + binByte1Stp.slice(5);
+    setByteCheckBoxes(byte1StpCheckBoxContainer, binByte1Stp);
+    updateInputSetup();
+});
+
+const cBoxSetupByte1Bit4 = document.getElementById('setup-byte1-bit4');
+cBoxSetupByte1Bit4.addEventListener('change', (e)=>{
+    let bit = e.target.checked ? '1' : '0';
+    binByte1Stp  = binByte1Stp.slice(0,3) + bit + binByte1Stp.slice(4);
+    setByteCheckBoxes(byte1StpCheckBoxContainer, binByte1Stp);
+    updateInputSetup();
+});
+
+const cBoxSetupByte1Bit5 = document.getElementById('setup-byte1-bit5');
+cBoxSetupByte1Bit5.addEventListener('change', (e)=>{
+    let bit = e.target.checked ? '1' : '0';
+    binByte1Stp  = binByte1Stp.slice(0,2) + bit + binByte1Stp.slice(3);
+    setByteCheckBoxes(byte1StpCheckBoxContainer, binByte1Stp);
+    updateInputSetup();
+});
+
+const cBoxSetupByte1Bit6 = document.getElementById('setup-byte1-bit6');
+cBoxSetupByte1Bit6.addEventListener('change', (e)=>{
+    let bit = e.target.checked ? '1' : '0';
+    binByte1Stp  = binByte1Stp.slice(0,1) + bit + binByte1Stp.slice(2);
+    setByteCheckBoxes(byte1StpCheckBoxContainer, binByte1Stp);
+    updateInputSetup();
+});
+
+const cBoxSetupByte1Bit7 = document.getElementById('setup-byte1-bit7');
+cBoxSetupByte1Bit7.addEventListener('change', (e)=>{
+    let bit = e.target.checked ? '1' : '0';
+    binByte1Stp  = bit + binByte1Stp.slice(1);
+    setByteCheckBoxes(byte1StpCheckBoxContainer, binByte1Stp);
+    updateInputSetup();
+});
+
+const cBoxSetupByte2Bit0 = document.getElementById('setup-byte2-bit0');
+cBoxSetupByte2Bit0.addEventListener('change', (e)=>{
+    let bit = e.target.checked ? '1' : '0';
+    binByte2Stp  = binByte2Stp.slice(0,7) + bit;
+    setByteCheckBoxes(byte2StpCheckBoxContainer, binByte2Stp);
+    updateInputSetup();
+});
+
+const cBoxSetupByte2Bit1 = document.getElementById('setup-byte2-bit1');
+cBoxSetupByte2Bit1.addEventListener('change', (e)=>{
+    let bit = e.target.checked ? '1' : '0';
+    binByte2Stp  = binByte2Stp.slice(0,6) + bit + binByte2Stp.slice(7);
+    setByteCheckBoxes(byte2StpCheckBoxContainer, binByte2Stp);
+    updateInputSetup();
+});
+
+const cBoxSetupByte2Bit2 = document.getElementById('setup-byte2-bit2');
+cBoxSetupByte2Bit2.addEventListener('change', (e)=>{
+    let bit = e.target.checked ? '1' : '0';
+    binByte2Stp  = binByte2Stp.slice(0,5) + bit + binByte2Stp.slice(6);
+    setByteCheckBoxes(byte2StpCheckBoxContainer, binByte2Stp);
+    updateInputSetup();
+});
+
+const cBoxSetupByte2Bit3 = document.getElementById('setup-byte2-bit3');
+cBoxSetupByte2Bit3.addEventListener('change', (e)=>{
+    let bit = e.target.checked ? '1' : '0';
+    binByte2Stp  = binByte2Stp.slice(0,4) + bit + binByte2Stp.slice(5);
+    setByteCheckBoxes(byte2StpCheckBoxContainer, binByte2Stp);
+    updateInputSetup();
+});
+
+const cBoxSetupByte2Bit4 = document.getElementById('setup-byte2-bit4');
+cBoxSetupByte2Bit4.addEventListener('change', (e)=>{
+    let bit = e.target.checked ? '1' : '0';
+    binByte2Stp  = binByte2Stp.slice(0,3) + bit + binByte2Stp.slice(4);
+    setByteCheckBoxes(byte2StpCheckBoxContainer, binByte2Stp);
+    updateInputSetup();
+});
+
+
+const cBoxSetupByte2Bit6 = document.getElementById('setup-byte2-bit6');
+cBoxSetupByte2Bit6.addEventListener('change', (e)=>{
+    let bit = e.target.checked ? '1' : '0';
+    binByte2Stp  = binByte2Stp.slice(0,1) + bit + binByte2Stp.slice(2);
+    setByteCheckBoxes(byte2StpCheckBoxContainer, binByte2Stp);
+    updateInputSetup();
+});

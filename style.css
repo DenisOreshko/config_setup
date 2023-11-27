@@ -37,6 +37,13 @@ div[class^=col], div.w-50 {
 #content {
     padding-top: 140px; 
 }
-@media screen {
-    
+@media (max-width: 580px) {
+    .btn.dropdown-toggle{
+      white-space: normal !important;
+    }
+}
+@media (min-width: 800px) and (min-height: 600px) {
+    .dropdown {
+      /*white-space: nowrap !important;*/
+    }
 }
